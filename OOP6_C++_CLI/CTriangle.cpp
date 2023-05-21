@@ -2,7 +2,7 @@
 
 void CTriangle::getVertices()
 {
-	// Левый нижний угол треугольника
+	// Левый нижний угол
 	Point a = Point(m_x - sideLength / 2, m_y + sideLength / 2);
 	vertices[0] = a;
 	// Верхний угол
