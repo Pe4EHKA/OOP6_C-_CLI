@@ -113,6 +113,7 @@ System::Void OOP6CCLI::MyForm::MyForm_KeyDown(System::Object^ sender, System::Wi
 
 System::Void OOP6CCLI::MyForm::pictureBox1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
 {
+    auto a = pictureBox1->Location;
     if (!shapes->containShape(e->X, e->Y)) {
         shapes->addNewShape(shape, e->X, e->Y);
     }

@@ -24,7 +24,7 @@ namespace OOP6CCLI {
 			//
 			proto = gcnew cli::array<CShape^> { gcnew CCircle(), gcnew CSquare(), gcnew CTriangle() };
 			shapes = gcnew DrawingCanvas();
-			penSelect = gcnew Pen(Color::Black);
+			penSelect = gcnew Pen(Color::Black, 1.0f);
 			brush = gcnew SolidBrush(Color::Black);
 		}
 
@@ -52,7 +52,9 @@ namespace OOP6CCLI {
 		DrawingCanvas^ shapes;  //  онтейнер с фигурами и методами дл€ них
 		CShape^ shape;
 		SolidBrush^ brush;
-	private: System::Windows::Forms::Panel^ panel1;
+		Pen^ penSelect;
+
+
 	private: System::Windows::Forms::Button^ buttonColor;
 
 	private: System::Windows::Forms::Button^ buttonTriangle;
@@ -61,9 +63,10 @@ namespace OOP6CCLI {
 	private: System::Windows::Forms::CheckBox^ checkBoxMulti;
 	private: System::Windows::Forms::CheckBox^ checkBoxCtrl;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
+	private: System::Windows::Forms::Panel^ panel1;
 	private: System::Windows::Forms::ColorDialog^ colorDialog;
 
-		   Pen^ penSelect;
+
 
 #pragma region Windows Form Designer generated code
 		   /// <summary>
@@ -72,7 +75,6 @@ namespace OOP6CCLI {
 		   /// </summary>
 		   void InitializeComponent(void)
 		   {
-			   this->panel1 = (gcnew System::Windows::Forms::Panel());
 			   this->buttonColor = (gcnew System::Windows::Forms::Button());
 			   this->buttonTriangle = (gcnew System::Windows::Forms::Button());
 			   this->buttonSquare = (gcnew System::Windows::Forms::Button());
@@ -81,37 +83,25 @@ namespace OOP6CCLI {
 			   this->checkBoxCtrl = (gcnew System::Windows::Forms::CheckBox());
 			   this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			   this->colorDialog = (gcnew System::Windows::Forms::ColorDialog());
-			   this->panel1->SuspendLayout();
+			   this->panel1 = (gcnew System::Windows::Forms::Panel());
 			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			   this->panel1->SuspendLayout();
 			   this->SuspendLayout();
-			   // 
-			   // panel1
-			   // 
-			   this->panel1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			   this->panel1->Controls->Add(this->buttonColor);
-			   this->panel1->Controls->Add(this->buttonTriangle);
-			   this->panel1->Controls->Add(this->buttonSquare);
-			   this->panel1->Controls->Add(this->buttonCircle);
-			   this->panel1->Controls->Add(this->checkBoxMulti);
-			   this->panel1->Controls->Add(this->checkBoxCtrl);
-			   this->panel1->Location = System::Drawing::Point(14, 12);
-			   this->panel1->Name = L"panel1";
-			   this->panel1->Size = System::Drawing::Size(1036, 125);
-			   this->panel1->TabIndex = 0;
 			   // 
 			   // buttonColor
 			   // 
-			   this->buttonColor->Location = System::Drawing::Point(812, 14);
+			   this->buttonColor->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			   this->buttonColor->Location = System::Drawing::Point(81, 331);
 			   this->buttonColor->Name = L"buttonColor";
 			   this->buttonColor->Size = System::Drawing::Size(62, 60);
 			   this->buttonColor->TabIndex = 6;
 			   this->buttonColor->TabStop = false;
-			   this->buttonColor->UseVisualStyleBackColor = true;
+			   this->buttonColor->UseVisualStyleBackColor = false;
 			   this->buttonColor->Click += gcnew System::EventHandler(this, &MyForm::buttonColor_Click);
 			   // 
 			   // buttonTriangle
 			   // 
-			   this->buttonTriangle->Location = System::Drawing::Point(632, 14);
+			   this->buttonTriangle->Location = System::Drawing::Point(44, 246);
 			   this->buttonTriangle->Name = L"buttonTriangle";
 			   this->buttonTriangle->Size = System::Drawing::Size(121, 48);
 			   this->buttonTriangle->TabIndex = 5;
@@ -122,7 +112,7 @@ namespace OOP6CCLI {
 			   // 
 			   // buttonSquare
 			   // 
-			   this->buttonSquare->Location = System::Drawing::Point(482, 14);
+			   this->buttonSquare->Location = System::Drawing::Point(44, 183);
 			   this->buttonSquare->Name = L"buttonSquare";
 			   this->buttonSquare->Size = System::Drawing::Size(122, 48);
 			   this->buttonSquare->TabIndex = 4;
@@ -133,7 +123,7 @@ namespace OOP6CCLI {
 			   // 
 			   // buttonCircle
 			   // 
-			   this->buttonCircle->Location = System::Drawing::Point(322, 14);
+			   this->buttonCircle->Location = System::Drawing::Point(44, 116);
 			   this->buttonCircle->Name = L"buttonCircle";
 			   this->buttonCircle->Size = System::Drawing::Size(118, 48);
 			   this->buttonCircle->TabIndex = 3;
@@ -157,7 +147,7 @@ namespace OOP6CCLI {
 			   // checkBoxCtrl
 			   // 
 			   this->checkBoxCtrl->AutoSize = true;
-			   this->checkBoxCtrl->Location = System::Drawing::Point(44, 22);
+			   this->checkBoxCtrl->Location = System::Drawing::Point(44, 20);
 			   this->checkBoxCtrl->Name = L"checkBoxCtrl";
 			   this->checkBoxCtrl->Size = System::Drawing::Size(99, 29);
 			   this->checkBoxCtrl->TabIndex = 1;
@@ -172,9 +162,9 @@ namespace OOP6CCLI {
 				   | System::Windows::Forms::AnchorStyles::Left)
 				   | System::Windows::Forms::AnchorStyles::Right));
 			   this->pictureBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			   this->pictureBox1->Location = System::Drawing::Point(14, 143);
+			   this->pictureBox1->Location = System::Drawing::Point(0, 0);
 			   this->pictureBox1->Name = L"pictureBox1";
-			   this->pictureBox1->Size = System::Drawing::Size(1036, 621);
+			   this->pictureBox1->Size = System::Drawing::Size(1085, 868);
 			   this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::CenterImage;
 			   this->pictureBox1->TabIndex = 1;
 			   this->pictureBox1->TabStop = false;
@@ -182,20 +172,36 @@ namespace OOP6CCLI {
 			   this->pictureBox1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::pictureBox1_MouseDown);
 			   this->pictureBox1->Resize += gcnew System::EventHandler(this, &MyForm::pictureBox1_Resize);
 			   // 
+			   // panel1
+			   // 
+			   this->panel1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			   this->panel1->BackColor = System::Drawing::SystemColors::Info;
+			   this->panel1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			   this->panel1->Controls->Add(this->buttonColor);
+			   this->panel1->Controls->Add(this->buttonTriangle);
+			   this->panel1->Controls->Add(this->buttonSquare);
+			   this->panel1->Controls->Add(this->buttonCircle);
+			   this->panel1->Controls->Add(this->checkBoxMulti);
+			   this->panel1->Controls->Add(this->checkBoxCtrl);
+			   this->panel1->Location = System::Drawing::Point(1091, 0);
+			   this->panel1->Name = L"panel1";
+			   this->panel1->Size = System::Drawing::Size(239, 423);
+			   this->panel1->TabIndex = 0;
+			   // 
 			   // MyForm
 			   // 
 			   this->AutoScaleDimensions = System::Drawing::SizeF(12, 25);
 			   this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			   this->ClientSize = System::Drawing::Size(1062, 776);
+			   this->ClientSize = System::Drawing::Size(1354, 869);
 			   this->Controls->Add(this->pictureBox1);
 			   this->Controls->Add(this->panel1);
 			   this->Name = L"MyForm";
 			   this->Text = L"MyForm";
 			   this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 			   this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyUp);
+			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			   this->panel1->ResumeLayout(false);
 			   this->panel1->PerformLayout();
-			   (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			   this->ResumeLayout(false);
 
 		   }
@@ -211,5 +217,6 @@ namespace OOP6CCLI {
 	private: System::Void MyForm_KeyDown(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e);
 	private: System::Void pictureBox1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
 	private: System::Void pictureBox1_Resize(System::Object^ sender, System::EventArgs^ e);
+
 };
 };

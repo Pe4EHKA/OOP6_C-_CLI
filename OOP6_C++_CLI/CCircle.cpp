@@ -4,13 +4,14 @@ void CCircle::draw(Pen^ penSelect, SolidBrush^ brush, Graphics^ g)
 {
 	if (select == true) {
 		penSelect->Color = Color::Black;
+		g->DrawRectangle(penSelect, m_x - radius_, m_y - radius_, radius_ * 2, radius_ * 2);
 	}
 	else {
 		penSelect->Color = color_;
 	}
 	brush->Color = color_;
 	g->FillEllipse(brush, m_x - radius_, m_y - radius_, radius_ * 2, radius_ * 2);
-	g->DrawEllipse(penSelect, m_x - radius_, m_y - radius_, radius_ * 2, radius_ * 2);
+	
 }
 
 void CCircle::setColor(Color color)

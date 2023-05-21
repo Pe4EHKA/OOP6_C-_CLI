@@ -116,7 +116,7 @@ bool DrawingCanvas::containShape(int x, int y)
 	if (!ctrlPressed) {
 		resetAll();
 	}
-	for (int i = 0; i < shapes->get_size(); ++i) {
+	for (int i = shapes->get_size() - 1; i >= 0; --i) {
 		if (shapes[i]->Contains(x, y) && !shapes[i]->isSelected()) {
 			shapes[i]->setSelect(true);
 			contain = true;

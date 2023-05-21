@@ -18,13 +18,13 @@ void CTriangle::draw(Pen^ penSelect, SolidBrush^ brush, Graphics^ g)
 	getVertices();
 	if (select == true) {
 		penSelect->Color = Color::Black;
+		g->DrawRectangle(penSelect, vertices[0].X - 3, vertices[1].Y - 3, sideLength + 5, sideLength + 5);
 	}
 	else {
 		penSelect->Color = color_;
 	}
 	brush->Color = color_;
 	g->FillPolygon(brush, vertices);
-	g->DrawPolygon(penSelect, vertices);
 }
 
 void CTriangle::setColor(Color color)

@@ -6,13 +6,13 @@ void CSquare::draw(Pen^ penSelect, SolidBrush^ brush, Graphics^ g)
 	int cornerY = m_y - sideLength / 2;
 	if (select == true) {
 		penSelect->Color = Color::Black;
+		g->DrawRectangle(penSelect, cornerX - 3, cornerY - 3, sideLength + 5, sideLength + 5);
 	}
 	else {
 		penSelect->Color = color_;
 	}
 	brush->Color = color_;
 	g->FillRectangle(brush, cornerX, cornerY, sideLength, sideLength);
-	g->DrawRectangle(penSelect, cornerX, cornerY, sideLength, sideLength);
 }
 
 void CSquare::setColor(Color color)
